@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import FeatureItem from '../components/FeatureItem/FeatureItem';
 import Hero from '../components/Hero/Hero';
 
 import ChatIcon from '../assets/icon-chat.png';
 import MoneyIcon from '../assets/icon-money.png';
 import SecurityIcon from '../assets/icon-security.png';
+
+import { tabTitle } from '../utils/helperFunctions';
 
 const FEATURES = [
 	{
@@ -31,6 +33,10 @@ const FEATURES = [
 ];
 
 function Home() {
+	useEffect(() => {
+		tabTitle('Home Page');
+	}, []);
+
 	return (
 		<>
 			<Hero />
