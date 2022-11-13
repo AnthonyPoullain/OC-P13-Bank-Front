@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ScrollToTop } from './utils/helperFunctions';
 import Layout from './components/Layout';
-import Home from './pages/Home';
-import Signin from './pages/Signin';
-import UserDashboard from './pages/UserDashboard';
+import Home from './pages/Home/Home';
+import Signin from './pages/Signin/Signin';
+import UserDashboard from './pages/UserDashboard/UserDashboard';
 
 function App() {
 	return (

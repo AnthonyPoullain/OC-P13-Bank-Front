@@ -1,4 +1,4 @@
-.sr-only {
+.sr_only {
   border: 0 !important;
   clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
   -webkit-clip-path: inset(50%) !important;
@@ -12,40 +12,37 @@
   white-space: nowrap !important; /* 3 */
 }
 
-.main-nav {
+.main_nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
 }
 
-.main-nav a {
+.main_nav a {
   font-weight: bold;
   color: #2c3e50;
 }
 
-.main-nav a.router-link-exact-active {
+.main_nav a.router-link-exact-active {
   color: #42b983;
 }
 
-.main-nav-item {
+.main_nav_item {
   text-decoration: none;
   margin-right: 0.5rem;
 }
 
-.main-nav-item:hover {
+.main_nav_item:hover {
   text-decoration: underline;
 }
 
-.main-nav-logo {
+.main_nav_logo {
   display: flex;
   align-items: center;
 }
 
-.main-nav-logo-image {
+.main_nav_logo_image {
   max-width: 100%;
   width: 200px;
-}
-.main-nav-item i {
-  margin-right: 5px;
 }

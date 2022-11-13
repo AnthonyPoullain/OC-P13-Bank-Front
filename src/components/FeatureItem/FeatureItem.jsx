@@ -1,12 +1,12 @@
-import './FeatureItem.css';
 import PropTypes from 'prop-types';
+import styles from './FeatureItem.module.css';
 
 function FeatureItem({ feature }) {
 	const { icon, alt, title, text } = feature;
 	return (
-		<div className="feature-item">
-			<img src={icon} alt={alt} className="feature-icon" />
-			<h3 className="feature-item-title">{title}</h3>
+		<div className={styles.feature_item}>
+			<img src={icon} alt={alt} className={styles.feature_icon} />
+			<h3 className={styles.feature_item_title}>{title}</h3>
 			<p>{text}</p>
 		</div>
 	);

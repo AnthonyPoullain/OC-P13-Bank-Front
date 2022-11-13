@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
-import FeatureItem from '../components/FeatureItem/FeatureItem';
-import Hero from '../components/Hero/Hero';
+import FeatureItem from '../../components/FeatureItem/FeatureItem';
+import Hero from '../../components/Hero/Hero';
 
-import ChatIcon from '../assets/icon-chat.png';
-import MoneyIcon from '../assets/icon-money.png';
-import SecurityIcon from '../assets/icon-security.png';
+import ChatIcon from '../../assets/icon-chat.png';
+import MoneyIcon from '../../assets/icon-money.png';
+import SecurityIcon from '../../assets/icon-security.png';
 
-import { tabTitle } from '../utils/helperFunctions';
+import styles from './Home.module.css';
+
+import { tabTitle } from '../../utils/helperFunctions';
 
 const FEATURES = [
 	{
@@ -40,7 +42,7 @@ function Home() {
 	return (
 		<>
 			<Hero />
-			<section className="features">
+			<section className={styles.features}>
 				<h2 className="sr-only">Features</h2>
 				{FEATURES.map((item) => (
 					<FeatureItem feature={item} key={item.key} />

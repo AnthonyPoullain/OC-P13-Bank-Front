@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 /**
  * Change the current tab title.
- * The suffix ' - Kasa' is automatically added.
+ * The prefix 'Argent Bank - ' is automatically added.
  *
  * @param {string} newTitle - New tab title
  */
