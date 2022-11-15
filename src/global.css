@@ -30,7 +30,19 @@ a {
 
 button {
   outline: none;
-  border: none;
+  cursor: pointer;
+}
+
+main {
+  min-height: calc(100vh - 144.38px);
+}
+
+.main {
+  flex: 1;
+}
+
+.bg-dark {
+  background-color: #12002b;
 }
 
 .sr-only {

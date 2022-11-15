@@ -17,6 +17,19 @@
 		"react"
 	],
 	"rules": {
+		"jsx-a11y/label-has-associated-control": [
+			2,
+			{
+				"components": [],
+				"required": {
+					"some": [
+						"nesting",
+						"id"
+					]
+				},
+				"allowChildren": true
+			}
+		],
 		"no-console": "off",
 		"no-return-assign": "off",
 		"no-param-reassign": "off",
