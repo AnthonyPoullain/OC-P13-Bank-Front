@@ -30,6 +30,7 @@
 				"allowChildren": true
 			}
 		],
+		"default-param-last": 0,
 		"no-console": "off",
 		"no-return-assign": "off",
 		"no-param-reassign": "off",

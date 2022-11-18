@@ -22,10 +22,16 @@
 .main_nav a {
   font-weight: bold;
   color: #2c3e50;
+  margin-right: 8px;
 }
 
 .main_nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.main_nav i {
+  margin-right: 4px;
+  margin-left: 5px;
 }
 
 .main_nav_item {

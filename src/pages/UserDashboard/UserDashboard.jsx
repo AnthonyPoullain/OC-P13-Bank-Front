@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import AccountCard from '../../components/AccountCard/AccountCard';
 import { tabTitle } from '../../utils/helperFunctions';
 import styles from './UserDashboard.module.css';
+import UserService from '../../services/user.service';
 
 const ACCOUNTS = [
 	{
@@ -32,6 +33,12 @@ function UserDashboard() {
 	}, []);
 
 	useEffect(() => {
+		const getData = async () => {
+			const response = await UserService.getUserProfile();
+			console.log(response);
+			return response;
+		};
+		getData();
 		setAccounts(() => ACCOUNTS);
 	}, []);
 
