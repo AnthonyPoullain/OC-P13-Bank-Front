@@ -10,6 +10,7 @@ class UserService {
 			{},
 			{ headers: authHeader() }
 		);
+
 		return response.data.body;
 	}
 }

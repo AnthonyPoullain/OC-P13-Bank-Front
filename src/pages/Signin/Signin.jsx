@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import styles from './Signin.module.css';
 import AuthService from '../../services/auth.service';
-import { login } from '../../features/auth/loggerSlice';
+import { login } from '../../features/auth/userSlice';
 import { tabTitle } from '../../utils/helperFunctions';
 
 function Signin() {
@@ -22,7 +22,7 @@ function Signin() {
 		try {
 			await AuthService.login(email, pwd);
 			dispatch(login());
-			navigate('/dashboard');
+			navigate('/profile');
 		} catch (error) {
 			console.error(error);
 		}

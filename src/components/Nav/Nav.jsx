@@ -1,19 +1,19 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './Nav.module.css';
-import { logout } from '../../features/auth/loggerSlice';
+import { logout } from '../../features/auth/userSlice';
 import Logo from '../../assets/argentBankLogo.png';
 import AuthService from '../../services/auth.service';
 
 function Nav() {
-	const isLoggedIn = useSelector((state) => state.logger.isLoggedIn);
+	const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const handleLogout = () => {
 		AuthService.logout();
 		dispatch(logout());
-		navigate('signin');
+		navigate('/');
 	};
 
 	return (
@@ -28,7 +28,7 @@ function Nav() {
 			</Link>
 			{isLoggedIn ? (
 				<div>
-					<Link className="main-nav-item" to="dashboard">
+					<Link className="main-nav-item" to="profile">
 						<i className="fa fa-user-circle" />
 						Tony
 					</Link>

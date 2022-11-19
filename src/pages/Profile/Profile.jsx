@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AccountCard from '../../components/AccountCard/AccountCard';
 import { tabTitle } from '../../utils/helperFunctions';
-import styles from './UserDashboard.module.css';
+import styles from './Profile.module.css';
 import UserService from '../../services/user.service';
 
 const ACCOUNTS = [
@@ -25,11 +25,11 @@ const ACCOUNTS = [
 	},
 ];
 
-function UserDashboard() {
+function Profile() {
 	const [accounts, setAccounts] = useState([]);
 
 	useEffect(() => {
-		tabTitle('Dashboard');
+		tabTitle('Profile');
 	}, []);
 
 	useEffect(() => {
@@ -62,4 +62,4 @@ function UserDashboard() {
 	);
 }
 
-export default UserDashboard;
+export default Profile;
