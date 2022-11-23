@@ -16,7 +16,7 @@ const initialState = user
 	: { isLoggedIn: false, token: null, data: null };
 
 export const userSlice = createSlice({
-	name: 'auth',
+	name: 'user',
 	initialState,
 	reducers: {
 		login: (state) => {
@@ -30,8 +30,16 @@ export const userSlice = createSlice({
 		},
 	},
 	extraReducers: (builder) => {
+		builder.addCase(fetchUserProfile.pending, (state) => {
+			state.loading = true;
+		});
 		builder.addCase(fetchUserProfile.fulfilled, (state, action) => {
 			state.data = action.payload;
+			state.loading = false;
+		});
+		builder.addCase(fetchUserProfile.rejected, (state, action) => {
+			state.data = action.payload;
+			state.loading = false;
 		});
 	},
 });

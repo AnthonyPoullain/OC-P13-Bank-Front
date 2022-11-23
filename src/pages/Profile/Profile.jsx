@@ -36,7 +36,10 @@ function Profile() {
 	}, []);
 
 	useEffect(() => {
-		dispatch(fetchUserProfile());
+		if (!userData) {
+			dispatch(fetchUserProfile());
+		}
+
 		setAccounts(() => ACCOUNTS);
 	}, []);
 

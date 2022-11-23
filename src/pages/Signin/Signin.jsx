@@ -5,10 +5,12 @@ import styles from './Signin.module.css';
 import AuthService from '../../services/auth.service';
 import { login } from '../../features/auth/userSlice';
 import { tabTitle } from '../../utils/helperFunctions';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 function Signin() {
 	const [email, setEmail] = useState();
 	const [pwd, setPwd] = useState();
+	const [isLoading, setIsLoading] = useState(false);
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -20,10 +22,14 @@ function Signin() {
 	const handleLogin = async (e) => {
 		e.preventDefault();
 		try {
+			setIsLoading(true);
 			await AuthService.login(email, pwd);
 			dispatch(login());
+			setIsLoading(false);
+
 			navigate('/profile');
 		} catch (error) {
+			setIsLoading(false);
 			console.error(error);
 		}
 	};
@@ -57,7 +63,7 @@ function Signin() {
 						<label htmlFor="remember-me">Remember me</label>
 					</div>
 					<button className={styles.sign_in_button} type="submit">
-						Sign In
+						{isLoading ? <LoadingSpinner /> : <>Sign In</>}
 					</button>
 				</form>
 			</section>
