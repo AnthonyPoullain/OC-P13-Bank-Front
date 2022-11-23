@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import AccountCard from '../../components/AccountCard/AccountCard';
 import { tabTitle } from '../../utils/helperFunctions';
 import styles from './Profile.module.css';
-import UserService from '../../services/user.service';
+import { fetchUserProfile } from '../../features/auth/userSlice';
 
 const ACCOUNTS = [
 	{
@@ -27,38 +28,37 @@ const ACCOUNTS = [
 
 function Profile() {
 	const [accounts, setAccounts] = useState([]);
+	const dispatch = useDispatch();
+	const userData = useSelector((state) => state.user.data);
 
 	useEffect(() => {
 		tabTitle('Profile');
 	}, []);
 
 	useEffect(() => {
-		const getData = async () => {
-			const response = await UserService.getUserProfile();
-			console.log(response);
-			return response;
-		};
-		getData();
+		dispatch(fetchUserProfile());
 		setAccounts(() => ACCOUNTS);
 	}, []);
 
 	return (
-		<div className="bg-dark" style={{ height: '100%', overflow: 'hidden' }}>
-			<div className={styles.header}>
-				<h1>
-					Welcome back
-					<br />
-					Tony Jarvis!
-				</h1>
-				<button className={styles.edit_button} type="button">
-					Edit Name
-				</button>
+		userData && (
+			<div className="bg-dark" style={{ height: '100%', overflow: 'hidden' }}>
+				<div className={styles.header}>
+					<h1>
+						Welcome back
+						<br />
+						{`${userData.firstName} ${userData.lastName}`}
+					</h1>
+					<button className={styles.edit_button} type="button">
+						Edit Name
+					</button>
+				</div>
+				<h2 className="sr-only">Accounts</h2>
+				{accounts.map((acc) => (
+					<AccountCard accountData={acc} key={acc.key} />
+				))}
 			</div>
-			<h2 className="sr-only">Accounts</h2>
-			{accounts.map((acc) => (
-				<AccountCard accountData={acc} key={acc.key} />
-			))}
-		</div>
+		)
 	);
 }
 

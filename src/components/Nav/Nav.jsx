@@ -9,6 +9,7 @@ function Nav() {
 	const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const userData = useSelector((state) => state.user.data);
 
 	const handleLogout = () => {
 		AuthService.logout();
@@ -28,10 +29,12 @@ function Nav() {
 			</Link>
 			{isLoggedIn ? (
 				<div>
-					<Link className="main-nav-item" to="profile">
-						<i className="fa fa-user-circle" />
-						Tony
-					</Link>
+					{userData?.firstName && (
+						<Link className="main-nav-item" to="profile">
+							<i className="fa fa-user-circle" />
+							{userData.firstName || 'error'}
+						</Link>
+					)}
 					<button
 						type="button"
 						className="main-nav-item"
