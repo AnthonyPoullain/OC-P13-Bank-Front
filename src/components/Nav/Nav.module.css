@@ -19,6 +19,11 @@
   padding: 5px 20px;
 }
 
+.main_nav button {
+  border: none;
+  font-size: inherit;
+}
+
 .main_nav a {
   font-weight: bold;
   color: #2c3e50;

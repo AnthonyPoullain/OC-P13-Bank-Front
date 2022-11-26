@@ -13,6 +13,18 @@ class UserService {
 
 		return response.data.body;
 	}
+
+	static async updateUserProfile(firstName, lastName) {
+		const response = await axios.put(
+			`${API_URL}/user/profile`,
+			{
+				firstName,
+				lastName,
+			},
+			{ headers: authHeader() }
+		);
+		console.log(response.data);
+	}
 }
 
 export default UserService;
