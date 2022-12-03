@@ -14,8 +14,32 @@ class UserService {
 		return response.data.body;
 	}
 
+	static async getUserAccounts() {
+		const response = [
+			{
+				key: 1,
+				title: 'Argent Bank Checking (x8349)',
+				amount: '$2,082.79',
+				description: 'Available Balance',
+			},
+			{
+				key: 2,
+				title: 'Argent Bank Savings (x6712)',
+				amount: '$10,928.42',
+				description: 'Available Balance',
+			},
+			{
+				key: 3,
+				title: 'Argent Bank Credit Card (x8349)',
+				amount: '$184.30',
+				description: 'Current Balance',
+			},
+		];
+		return response;
+	}
+
 	static async updateUserProfile(firstName, lastName) {
-		const response = await axios.put(
+		await axios.put(
 			`${API_URL}/user/profile`,
 			{
 				firstName,
@@ -23,7 +47,6 @@ class UserService {
 			},
 			{ headers: authHeader() }
 		);
-		console.log(response.data);
 	}
 }
 

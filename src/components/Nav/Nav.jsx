@@ -1,20 +1,18 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './Nav.module.css';
 import { logout } from '../../features/auth/userSlice';
 import Logo from '../../assets/argentBankLogo.png';
-import AuthService from '../../services/auth.service';
 
 function Nav() {
-	const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
+
+	/* Global state */
+	const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 	const userData = useSelector((state) => state.user.data);
 
 	const handleLogout = () => {
-		AuthService.logout();
 		dispatch(logout());
-		navigate('/');
 	};
 
 	return (
@@ -32,7 +30,7 @@ function Nav() {
 					{userData?.firstName && (
 						<Link className="main-nav-item" to="profile">
 							<i className="fa fa-user-circle" />
-							{userData.firstName || 'error'}
+							{userData.firstName}
 						</Link>
 					)}
 					<button
@@ -46,7 +44,7 @@ function Nav() {
 				</div>
 			) : (
 				<div>
-					<Link to="signin" className={styles.main_nav_item}>
+					<Link to="login" className={styles.main_nav_item}>
 						<i className="fa fa-user-circle" style={{ marginRight: '5px' }} />
 						Sign In
 					</Link>
