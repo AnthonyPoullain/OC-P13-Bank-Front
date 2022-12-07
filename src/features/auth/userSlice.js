@@ -98,11 +98,9 @@ export const userSlice = createSlice({
 		// fetchUserAccounts
 		builder.addCase(fetchUserAccounts.pending, (state) => {
 			state.accounts.loading = true;
-			state.error = null;
 		});
-		builder.addCase(fetchUserAccounts.rejected, (state, action) => {
+		builder.addCase(fetchUserAccounts.rejected, (state) => {
 			state.accounts.loading = false;
-			state.error = action.error;
 		});
 		builder.addCase(fetchUserAccounts.fulfilled, (state, action) => {
 			state.accounts.loading = false;

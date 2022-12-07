@@ -37,11 +37,8 @@ function Profile() {
 
 	const handleUpdateProfile = async (e) => {
 		e.preventDefault();
-		// 1) Update user data
 		dispatch(updateUserProfile({ newFirstName, newLastName }));
-		// 2) Fetch new user data
 		dispatch(fetchUserProfile());
-		// 3) Turn edit mode off
 		handleToggleEditMode();
 	};
 
@@ -54,6 +51,7 @@ function Profile() {
 						<form onSubmit={handleUpdateProfile}>
 							<div style={{ marginBottom: '10px' }}>
 								<input
+									autoFocus
 									onChange={(e) => setNewFirstName(e.target.value)}
 									type="text"
 									id="username"
@@ -122,14 +120,15 @@ function Profile() {
 			</div>
 			<h2 className="sr-only">Accounts</h2>
 			<div className="accounts">
-				{userInfo.loading && accounts.loading ? (
-					<LoadingSpinner />
-				) : (
-					accounts.data &&
+				{accounts.loading &&
+					[null, null, null].map((acc, i) => (
+						/* eslint-disable-next-line react/no-array-index-key */
+						<AccountCard accountData={acc} key={i} />
+					))}
+				{accounts.data &&
 					accounts.data.map((acc) => (
 						<AccountCard accountData={acc} key={acc.key} />
-					))
-				)}
+					))}
 			</div>
 		</div>
 	);

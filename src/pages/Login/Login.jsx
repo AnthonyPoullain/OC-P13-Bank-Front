@@ -36,6 +36,7 @@ function Signin() {
 					<div className={styles.input_wrapper}>
 						<label htmlFor="username">Username</label>
 						<input
+							autoFocus
 							onChange={(e) => setEmail(e.target.value)}
 							type="text"
 							id="username"

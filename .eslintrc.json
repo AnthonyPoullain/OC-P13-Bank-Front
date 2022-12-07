@@ -32,6 +32,12 @@
 		],
 		"default-param-last": 0,
 		"no-console": "off",
+		"jsx-a11y/no-autofocus": [
+			0,
+			{
+				"ignoreNonDOM": true
+			}
+		],
 		"no-return-assign": "off",
 		"no-param-reassign": "off",
 		"react/react-in-jsx-scope": "off",
