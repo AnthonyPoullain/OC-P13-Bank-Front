@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import AuthService from '../../services/auth.service';
 import UserService from '../../services/user.service';
+import { capitalizeWord } from '../../utils/helperFunctions';
 
 const user = JSON.parse(localStorage.getItem('user'));
 
 export const login = createAsyncThunk(
 	'user/login',
-	async (credentials, { rejectWithValue }) => {
+	async ({ email, password }, { rejectWithValue }) => {
 		try {
-			const { email, password } = credentials;
 			const response = await AuthService.login(email, password);
 			return response.data;
 		} catch (error) {
@@ -25,17 +25,38 @@ export const fetchUserProfile = createAsyncThunk(
 	}
 );
 
-const initialState = user
-	? { isLoggedIn: true, loading: false, error: null }
-	: { isLoggedIn: false, data: null, loading: false, error: null };
+export const fetchUserAccounts = createAsyncThunk(
+	'user/fetchAccounts',
+	async () => {
+		const response = await UserService.getUserAccounts();
+		return response;
+	}
+);
+
+export const updateUserProfile = createAsyncThunk(
+	'user/updateProfile',
+	async ({ newFirstName, newLastName }) => {
+		await UserService.updateUserProfile(
+			capitalizeWord(newFirstName),
+			capitalizeWord(newLastName)
+		);
+	}
+);
 
 export const userSlice = createSlice({
 	name: 'user',
-	initialState,
+	initialState: {
+		isLoggedIn: !!user,
+		userInfo: { loading: false, data: null },
+		accounts: { loading: false, data: null },
+		loading: false,
+		error: null,
+	},
 	reducers: {
 		logout: (state) => {
 			state.isLoggedIn = false;
-			state.data = null;
+			state.userInfo.data = null;
+			state.accounts.data = null;
 			AuthService.logout();
 		},
 		clearErrorMessage: (state) => {
@@ -60,17 +81,32 @@ export const userSlice = createSlice({
 
 		// fetchUserProfile
 		builder.addCase(fetchUserProfile.pending, (state) => {
-			state.loading = true;
+			state.userInfo.loading = true;
 		});
 		builder.addCase(fetchUserProfile.rejected, (state) => {
-			state.loading = false;
 			state.isLoggedIn = false;
-			state.data = null;
+			state.userInfo.loading = false;
+			state.userInfo.data = null;
+			state.accounts.data = null;
 			AuthService.logout();
 		});
 		builder.addCase(fetchUserProfile.fulfilled, (state, action) => {
-			state.data = action.payload;
-			state.loading = false;
+			state.userInfo.data = action.payload;
+			state.userInfo.loading = false;
+		});
+
+		// fetchUserAccounts
+		builder.addCase(fetchUserAccounts.pending, (state) => {
+			state.accounts.loading = true;
+			state.error = null;
+		});
+		builder.addCase(fetchUserAccounts.rejected, (state, action) => {
+			state.accounts.loading = false;
+			state.error = action.error;
+		});
+		builder.addCase(fetchUserAccounts.fulfilled, (state, action) => {
+			state.accounts.loading = false;
+			state.accounts.data = action.payload;
 		});
 	},
 });

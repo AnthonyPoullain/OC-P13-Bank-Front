@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { capitalizeWord, tabTitle } from '../../utils/helperFunctions';
+import { tabTitle } from '../../utils/helperFunctions';
 import styles from './Profile.module.css';
-import { fetchUserProfile } from '../../features/auth/userSlice';
-import UserService from '../../services/user.service';
+import {
+	fetchUserAccounts,
+	fetchUserProfile,
+	updateUserProfile,
+} from '../../features/auth/userSlice';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import AccountCard from '../../components/AccountCard/AccountCard';
 
@@ -11,27 +14,21 @@ function Profile() {
 	const dispatch = useDispatch();
 
 	/* Local state */
-	const [accounts, setAccounts] = useState();
 	const [editMode, setEditMode] = useState(false);
 	const [newFirstName, setNewFirstName] = useState('');
 	const [newLastName, setNewLastName] = useState('');
 
 	/* Global state */
-	const userData = useSelector((state) => state.user.data);
-	const isLoading = useSelector((state) => state.user.loading);
+	const userInfo = useSelector((state) => state.user.userInfo);
+	const accounts = useSelector((state) => state.user.accounts);
 
 	useEffect(() => {
 		tabTitle('Profile');
 	}, []);
 
 	useEffect(() => {
-		if (!userData) dispatch(fetchUserProfile());
-		if (!accounts) {
-			(async () => {
-				const accountsData = await UserService.getUserAccounts();
-				setAccounts(accountsData);
-			})();
-		}
+		if (!userInfo.data) dispatch(fetchUserProfile());
+		if (!accounts.data) dispatch(fetchUserAccounts());
 	}, []);
 
 	const handleToggleEditMode = () => {
@@ -40,19 +37,12 @@ function Profile() {
 
 	const handleUpdateProfile = async (e) => {
 		e.preventDefault();
-		try {
-			// 1) Update user data
-			await UserService.updateUserProfile(
-				capitalizeWord(newFirstName),
-				capitalizeWord(newLastName)
-			);
-			// 2) Fetch new user data
-			dispatch(fetchUserProfile());
-			// 3) Turn edit mode off
-			handleToggleEditMode();
-		} catch (error) {
-			console.log(error);
-		}
+		// 1) Update user data
+		dispatch(updateUserProfile({ newFirstName, newLastName }));
+		// 2) Fetch new user data
+		dispatch(fetchUserProfile());
+		// 3) Turn edit mode off
+		handleToggleEditMode();
 	};
 
 	return (
@@ -67,7 +57,7 @@ function Profile() {
 									onChange={(e) => setNewFirstName(e.target.value)}
 									type="text"
 									id="username"
-									placeholder={userData?.firstName}
+									placeholder={userInfo?.firstName}
 									required
 									style={{
 										marginRight: '10px',
@@ -80,7 +70,7 @@ function Profile() {
 									onChange={(e) => setNewLastName(e.target.value)}
 									type="text"
 									id="username"
-									placeholder={userData?.lastName}
+									placeholder={userInfo?.lastName}
 									required
 									style={{
 										marginLeft: '10px',
@@ -112,13 +102,13 @@ function Profile() {
 						<h1>
 							Welcome back
 							<br />
-							{isLoading ? (
+							{userInfo.loading ? (
 								<LoadingSpinner />
 							) : (
-								`${userData?.firstName} ${userData?.lastName}`
+								`${userInfo?.data?.firstName} ${userInfo?.data?.lastName}`
 							)}
 						</h1>
-						{!isLoading && (
+						{!userInfo.loading && (
 							<button
 								className={styles.edit_button}
 								type="button"
@@ -131,11 +121,16 @@ function Profile() {
 				)}
 			</div>
 			<h2 className="sr-only">Accounts</h2>
-			{!accounts ? (
-				<LoadingSpinner />
-			) : (
-				accounts.map((acc) => <AccountCard accountData={acc} key={acc.key} />)
-			)}
+			<div className="accounts">
+				{userInfo.loading && accounts.loading ? (
+					<LoadingSpinner />
+				) : (
+					accounts.data &&
+					accounts.data.map((acc) => (
+						<AccountCard accountData={acc} key={acc.key} />
+					))
+				)}
+			</div>
 		</div>
 	);
 }

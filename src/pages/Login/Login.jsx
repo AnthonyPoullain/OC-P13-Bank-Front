@@ -18,7 +18,7 @@ function Signin() {
 	const error = useSelector((state) => state.user.error);
 
 	useEffect(() => {
-		tabTitle('Sign In');
+		tabTitle('Login');
 	}, []);
 
 	const handleLogin = async (e) => {
