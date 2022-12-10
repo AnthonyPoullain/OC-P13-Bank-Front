@@ -35,11 +35,11 @@ function Profile() {
 		setEditMode(!editMode);
 	};
 
-	const handleUpdateProfile = async (e) => {
+	const handleUpdateProfile = (e) => {
 		e.preventDefault();
-		dispatch(updateUserProfile({ newFirstName, newLastName }));
-		dispatch(fetchUserProfile());
-		handleToggleEditMode();
+		dispatch(updateUserProfile({ newFirstName, newLastName }))
+			.then(dispatch(fetchUserProfile()))
+			.then(handleToggleEditMode());
 	};
 
 	return (
@@ -55,7 +55,7 @@ function Profile() {
 									onChange={(e) => setNewFirstName(e.target.value)}
 									type="text"
 									id="username"
-									placeholder={userInfo?.firstName}
+									placeholder={userInfo?.data?.firstName}
 									required
 									style={{
 										marginRight: '10px',
@@ -68,7 +68,7 @@ function Profile() {
 									onChange={(e) => setNewLastName(e.target.value)}
 									type="text"
 									id="username"
-									placeholder={userInfo?.lastName}
+									placeholder={userInfo?.data?.lastName}
 									required
 									style={{
 										marginLeft: '10px',
