@@ -3,15 +3,17 @@ import AuthService from '../../services/auth.service';
 import UserService from '../../services/user.service';
 import { capitalizeWord } from '../../utils/helperFunctions';
 
-const user = JSON.parse(localStorage.getItem('user'));
+let user = localStorage.getItem('user');
+if (user) user = JSON.parse(user);
 
 export const login = createAsyncThunk(
 	'user/login',
-	async ({ email, password }, { rejectWithValue }) => {
+	async ({ email, password }: Credentials, { rejectWithValue }) => {
 		try {
 			const response = await AuthService.login(email, password);
 			return response.data;
-		} catch (error) {
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		} catch (error: any) {
 			return rejectWithValue(error.response.data);
 		}
 	}
@@ -35,10 +37,10 @@ export const fetchUserAccounts = createAsyncThunk(
 
 export const updateUserProfile = createAsyncThunk(
 	'user/updateProfile',
-	async ({ newFirstName, newLastName }) => {
+	async ({ firstName, lastName }: UserData) => {
 		await UserService.updateUserProfile(
-			capitalizeWord(newFirstName),
-			capitalizeWord(newLastName)
+			capitalizeWord(firstName),
+			capitalizeWord(lastName)
 		);
 	}
 );
@@ -51,7 +53,8 @@ export const userSlice = createSlice({
 		accounts: { loading: false, data: null },
 		loading: false,
 		error: null,
-	},
+	} as UserState,
+
 	reducers: {
 		logout: (state) => {
 			state.isLoggedIn = false;

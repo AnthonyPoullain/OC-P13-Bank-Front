@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_URL = 'http://localhost:3001/api/v1';
 
 class AuthService {
-	static async login(email, password) {
+	static async login(email: string, password: string) {
 		const response = await axios.post(`${API_URL}/user/login`, {
 			email,
 			password,

@@ -8,7 +8,7 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
  *
  * @param {string} newTitle - New tab title
  */
-export function tabTitle(newTitle) {
+export function tabTitle(newTitle: string) {
 	if (!newTitle) return;
 	document.title = `Argent Bank - ${newTitle}`;
 }
@@ -30,10 +30,15 @@ export function ScrollToTop() {
 /**
  * Protect routes from unauthorized users
  *
- * @param {boolean} isAllowed
- * @param {string} redirectPath
+ * @param {object} {isAllowed: boolean, redirectPath: string}
  */
-export function ProtectedRoute({ isAllowed, redirectPath }) {
+export function ProtectedRoute({
+	isAllowed,
+	redirectPath,
+}: {
+	isAllowed: boolean;
+	redirectPath: string;
+}) {
 	if (!isAllowed) {
 		return <Navigate to={redirectPath} replace />;
 	}
@@ -50,6 +55,6 @@ ProtectedRoute.propTypes = {
  *
  * @param {string} word - Word to capitalize
  */
-export function capitalizeWord(word) {
+export function capitalizeWord(word: string) {
 	return (word.charAt(0).toUpperCase() + word.slice(1)).trim();
 }

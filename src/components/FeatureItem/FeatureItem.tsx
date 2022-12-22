@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styles from './FeatureItem.module.css';
 
-function FeatureItem({ feature }) {
+function FeatureItem({ feature }: { feature: Feature }) {
 	const { icon, alt, title, text } = feature;
 	return (
 		<div className={styles.feature_item}>

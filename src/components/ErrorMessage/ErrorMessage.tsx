@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import styles from './ErrorMessage.module.css';
 import { clearErrorMessage } from '../../features/auth/userSlice';
 
-function ErrorMessage({ message }) {
+function ErrorMessage({ message }: { message: string }) {
 	const dispatch = useDispatch();
 
 	const handleCloseDialog = () => {
@@ -11,18 +11,16 @@ function ErrorMessage({ message }) {
 	};
 
 	return (
-		message && (
-			<div className={styles.dialog}>
-				<button
-					onClick={handleCloseDialog}
-					className={styles.closeBtn}
-					type="button"
-				>
-					x
-				</button>
-				<p>{message}</p>
-			</div>
-		)
+		<div className={styles.dialog}>
+			<button
+				onClick={handleCloseDialog}
+				className={styles.closeBtn}
+				type="button"
+			>
+				x
+			</button>
+			<p>{message}</p>
+		</div>
 	);
 }
 

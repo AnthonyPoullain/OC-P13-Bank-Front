@@ -1,9 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import styles from './AccountCard.module.css';
 
-function AccountCard({ accountData }) {
+function AccountCard({ accountData }: { accountData: Account | null }) {
 	return (
 		<section className={styles.account}>
 			<div className={styles.account_content_wrapper}>

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from './app/hooks';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { ProtectedRoute, ScrollToTop } from './utils/helperFunctions';
 import Layout from './components/Layout';
@@ -9,7 +9,7 @@ import Profile from './pages/Profile/Profile';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 function App() {
-	const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+	const isLoggedIn: boolean = useAppSelector((state) => state.user.isLoggedIn);
 
 	return (
 		<SkeletonTheme baseColor="#ddd" highlightColor="#eee">

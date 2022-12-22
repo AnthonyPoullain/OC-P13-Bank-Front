@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import FeatureItem from '../../components/FeatureItem/FeatureItem';
 import Hero from '../../components/Hero/Hero';
 
@@ -10,7 +10,7 @@ import styles from './Home.module.css';
 
 import { tabTitle } from '../../utils/helperFunctions';
 
-const FEATURES = [
+const FEATURES: Feature[] = [
 	{
 		key: 1,
 		icon: ChatIcon,

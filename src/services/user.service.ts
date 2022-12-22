@@ -40,7 +40,7 @@ class UserService {
 		return response;
 	}
 
-	static async updateUserProfile(firstName, lastName) {
+	static async updateUserProfile(firstName: string, lastName: string) {
 		await axios.put(
 			`${API_URL}/user/profile`,
 			{
