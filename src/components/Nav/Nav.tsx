@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import styles from './Nav.module.css';
 import { logout } from '../../features/auth/userSlice';
 import Logo from '../../assets/argentBankLogo.png';
 
 function Nav() {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	/* Global state */
-	const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-	const userInfo = useSelector((state) => state.user.userInfo);
+	const isLoggedIn: boolean = useAppSelector((state) => state.user.isLoggedIn);
+	const userInfo: user = useAppSelector((state) => state.user.userInfo);
 
 	const handleLogout = () => {
 		dispatch(logout());

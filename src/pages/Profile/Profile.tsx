@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { tabTitle } from '../../utils/helperFunctions';
 import styles from './Profile.module.css';
 import {
@@ -11,16 +11,16 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import AccountCard from '../../components/AccountCard/AccountCard';
 
 function Profile() {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	/* Local state */
-	const [editMode, setEditMode] = useState(false);
-	const [newFirstName, setNewFirstName] = useState('');
-	const [newLastName, setNewLastName] = useState('');
+	const [editMode, setEditMode] = useState<boolean>(false);
+	const [firstName, setFirstName] = useState<string>('');
+	const [lastName, setLastName] = useState<string>('');
 
 	/* Global state */
-	const userInfo = useSelector((state) => state.user.userInfo);
-	const accounts = useSelector((state) => state.user.accounts);
+	const userInfo: user = useAppSelector((state) => state.user.userInfo);
+	const accounts: accounts = useAppSelector((state) => state.user.accounts);
 
 	useEffect(() => {
 		tabTitle('Profile');
@@ -35,13 +35,12 @@ function Profile() {
 		setEditMode(!editMode);
 	};
 
-	const handleUpdateProfile = (e) => {
+	const handleUpdateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		dispatch(updateUserProfile({ newFirstName, newLastName }))
-			.then(dispatch(fetchUserProfile()))
-			.then(handleToggleEditMode());
+		await dispatch(updateUserProfile({ firstName, lastName }));
+		await dispatch(fetchUserProfile());
+		handleToggleEditMode();
 	};
-
 	return (
 		<div className="bg-dark" style={{ height: '100%', overflow: 'hidden' }}>
 			<div className={styles.header}>
@@ -52,7 +51,7 @@ function Profile() {
 							<div style={{ marginBottom: '10px' }}>
 								<input
 									autoFocus
-									onChange={(e) => setNewFirstName(e.target.value)}
+									onChange={(e) => setFirstName(e.target.value)}
 									type="text"
 									id="username"
 									placeholder={userInfo?.data?.firstName}
@@ -65,7 +64,7 @@ function Profile() {
 									}}
 								/>
 								<input
-									onChange={(e) => setNewLastName(e.target.value)}
+									onChange={(e) => setLastName(e.target.value)}
 									type="text"
 									id="username"
 									placeholder={userInfo?.data?.lastName}

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import styles from './Login.module.css';
 import { login } from '../../features/auth/userSlice';
 import { tabTitle } from '../../utils/helperFunctions';
@@ -7,21 +7,21 @@ import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 function Signin() {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	/* Local state */
-	const [email, setEmail] = useState();
-	const [password, setPassword] = useState();
+	const [email, setEmail] = useState<string>('');
+	const [password, setPassword] = useState<string>('');
 
 	/* Global state */
-	const isLoading = useSelector((state) => state.user.loading);
-	const error = useSelector((state) => state.user.error);
+	const isLoading: boolean = useAppSelector((state) => state.user.loading);
+	const error: string | null = useAppSelector((state) => state.user.error);
 
 	useEffect(() => {
 		tabTitle('Login');
 	}, []);
 
-	const handleLogin = async (e) => {
+	const handleLogin = async (e: React.SyntheticEvent) => {
 		e.preventDefault();
 		dispatch(login({ email, password }));
 	};
@@ -37,7 +37,7 @@ function Signin() {
 						<label htmlFor="username">Username</label>
 						<input
 							autoFocus
-							onChange={(e) => setEmail(e.target.value)}
+							onChange={(e) => setEmail(e.currentTarget.value)}
 							type="text"
 							id="username"
 							required
