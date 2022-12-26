@@ -6,7 +6,11 @@ import { capitalizeWord } from '../../utils/helperFunctions';
 let user = localStorage.getItem('user');
 if (user) user = JSON.parse(user);
 
-export const login = createAsyncThunk(
+export const login = createAsyncThunk<
+	APIResponse,
+	Credentials,
+	{ rejectValue: APIResponse }
+>(
 	'user/login',
 	async ({ email, password }: Credentials, { rejectWithValue }) => {
 		try {
@@ -75,7 +79,7 @@ export const userSlice = createSlice({
 		});
 		builder.addCase(login.rejected, (state, action) => {
 			state.loading = false;
-			state.error = action.payload.message;
+			state.error = action.payload ? action.payload.message : null;
 		});
 		builder.addCase(login.fulfilled, (state) => {
 			state.loading = false;

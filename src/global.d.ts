@@ -42,3 +42,8 @@ interface Feature {
 	title: string;
 	text: string;
 }
+
+interface APIResponse {
+	status: number;
+	message: string;
+}
