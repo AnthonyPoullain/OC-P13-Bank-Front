@@ -1,14 +1,11 @@
 {
 	"name": "oc-p13-bank-front",
-	"homepage": "https://anthonypoullain.github.io/OC-P13-Bank-Front",
-	"private": false,
+	"private": true,
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
-		"predeploy": "npm run build",
-		"deploy": "gh-pages -d dist",
 		"preview": "vite preview"
 	},
 	"dependencies": {
@@ -31,7 +28,6 @@
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-react": "^7.31.10",
-		"gh-pages": "^4.0.0",
 		"prettier": "^2.7.1"
 	}
 }
