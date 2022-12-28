@@ -44,12 +44,12 @@ For the **frontend** to be able to access the data, the **backend** will first n
 
 ### 2. Installing the frontend
 
-#### - 2.1 Prerequisites
+#### 2.1 Prerequisites
 
 - [node.js](https://nodejs.org/en/)
 - [npm](https://www.npmjs.com/)
 
-#### - 2.2 Launching the project
+#### 2.2 Launching the project
 
 1. Clone this repository
 2. The `npm install` command will allow you to install the dependencies
