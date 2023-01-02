@@ -3,8 +3,8 @@ declare module '*.css';
 
 interface UserState {
 	isLoggedIn: boolean;
-	userInfo: { loading: boolean; data: UserData | null };
-	accounts: { loading: boolean; data: Account[] | null };
+	userInfo: User;
+	accounts: Accounts;
 	loading: boolean;
 	error: string | null;
 }
