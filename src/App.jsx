@@ -16,7 +16,7 @@ function App() {
 			<BrowserRouter>
 				<ScrollToTop />
 				<Routes>
-					<Route path="/" element={<Layout />}>
+					<Route path="/OC-P13-Bank-Front/" element={<Layout />}>
 						<Route index element={<Home />} />
 
 						{/* Protected Routes: : */}

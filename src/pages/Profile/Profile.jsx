@@ -121,9 +121,8 @@ function Profile() {
 			<h2 className="sr-only">Accounts</h2>
 			<div className="accounts">
 				{accounts.loading &&
-					[null, null, null].map((acc, i) => (
-						/* eslint-disable-next-line react/no-array-index-key */
-						<AccountCard accountData={acc} key={i} />
+					[null, null, null].map((acc) => (
+						<AccountCard accountData={acc} key={crypto.randomUUID()} />
 					))}
 				{accounts.data &&
 					accounts.data.map((acc) => (
