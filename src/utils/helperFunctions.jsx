@@ -30,8 +30,7 @@ export function ScrollToTop() {
 /**
  * Protect routes from unauthorized users
  *
- * @param {boolean} isAllowed
- * @param {string} redirectPath
+ * @param {{isAllowed: boolean, redirectPath: string}}
  */
 export function ProtectedRoute({ isAllowed, redirectPath }) {
 	if (!isAllowed) {
