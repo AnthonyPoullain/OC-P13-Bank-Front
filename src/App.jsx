@@ -13,10 +13,10 @@ function App() {
 
 	return (
 		<SkeletonTheme baseColor="#ddd" highlightColor="#eee">
-			<BrowserRouter>
+			<BrowserRouter basename="/OC-P13-Bank-Front/">
 				<ScrollToTop />
 				<Routes>
-					<Route path="/OC-P13-Bank-Front/" element={<Layout />}>
+					<Route path="/" element={<Layout />}>
 						<Route index element={<Home />} />
 
 						{/* Protected Routes: : */}
