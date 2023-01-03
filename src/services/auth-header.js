@@ -1,3 +1,8 @@
+/**
+ * Function for getting authorization header
+ *
+ * @returns {Object} Authorization header
+ */
 function authHeader() {
 	const user = JSON.parse(localStorage.getItem('user'));
 

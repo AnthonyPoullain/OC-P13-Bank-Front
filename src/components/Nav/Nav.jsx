@@ -4,6 +4,9 @@ import styles from './Nav.module.css';
 import { logout } from '../../features/auth/userSlice';
 import Logo from '../../assets/argentBankLogo.png';
 
+/**
+ * Nav component
+ */
 function Nav() {
 	const dispatch = useDispatch();
 

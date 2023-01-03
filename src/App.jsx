@@ -22,7 +22,7 @@ function App() {
 						{/* Protected Routes: : */}
 						<Route
 							element={
-								<ProtectedRoute isAllowed={isLoggedIn} redirectPath="/" />
+								<ProtectedRoute isAllowed={isLoggedIn} redirectPath="login" />
 							}
 						>
 							{/* Can access only when logged in: */}

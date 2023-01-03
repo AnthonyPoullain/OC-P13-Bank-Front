@@ -34,6 +34,9 @@ const FEATURES = [
 	},
 ];
 
+/**
+ * Home page component
+ */
 function Home() {
 	useEffect(() => {
 		tabTitle('Home Page');

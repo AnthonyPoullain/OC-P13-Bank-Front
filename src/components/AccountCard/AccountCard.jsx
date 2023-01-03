@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 import styles from './AccountCard.module.css';
 
+/**
+ * AccountCard component
+ *
+ * @param {object} accountData
+ * @param {string} accountData.title
+ * @param {string} accountData.amount
+ * @param {string} accountData.description
+ */
 function AccountCard({ accountData }) {
 	return (
 		<section className={styles.account}>
@@ -35,7 +43,6 @@ AccountCard.propTypes = {
 		description: PropTypes.string,
 	}),
 };
-
 AccountCard.defaultProps = {
 	accountData: null,
 };

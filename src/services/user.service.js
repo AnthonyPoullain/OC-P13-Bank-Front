@@ -3,7 +3,15 @@ import authHeader from './auth-header';
 
 const API_URL = 'http://localhost:3001/api/v1';
 
+/**
+ * A class that provides methods for interacting with the user's profile and accounts data.
+ */
 class UserService {
+	/**
+	 * Retrieves the user's profile data.
+	 *
+	 * @returns {Promise<Object>} A promise that resolves to the user's profile data.
+	 */
 	static async getUserProfile() {
 		const response = await axios.post(
 			`${API_URL}/user/profile`,
@@ -14,6 +22,11 @@ class UserService {
 		return response.data.body;
 	}
 
+	/**
+	 * Retrieves the user's accounts data.
+	 *
+	 * @returns {Promise<Object[]>} A promise that resolves to the user's accounts data.
+	 */
 	static async getUserAccounts() {
 		const response = [
 			{
@@ -40,6 +53,13 @@ class UserService {
 		return response;
 	}
 
+	/**
+	 * Updates the user's profile data.
+	 *
+	 * @param {string} firstName The user's first name.
+	 * @param {string} lastName The user's last name.
+	 * @returns {Promise<void>} A promise that resolves when the user's profile data has been updated.
+	 */
 	static async updateUserProfile(firstName, lastName) {
 		await axios.put(
 			`${API_URL}/user/profile`,

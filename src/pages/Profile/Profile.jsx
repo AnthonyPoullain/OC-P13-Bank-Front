@@ -10,6 +10,9 @@ import {
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import AccountCard from '../../components/AccountCard/AccountCard';
 
+/**
+ * Profile page component
+ */
 function Profile() {
 	const dispatch = useDispatch();
 

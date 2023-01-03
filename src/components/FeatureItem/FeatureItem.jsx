@@ -1,6 +1,15 @@
 import PropTypes from 'prop-types';
 import styles from './FeatureItem.module.css';
 
+/**
+ * FeatureItem component
+ *
+ * @param {Object} feature - The feature object.
+ * @param {string} feature.icon - The icon url.
+ * @param {string} feature.alt - The alt text.
+ * @param {string} feature.title - The title text.
+ * @param {string} feature.text - The text.
+ */
 function FeatureItem({ feature }) {
 	const { icon, alt, title, text } = feature;
 	return (

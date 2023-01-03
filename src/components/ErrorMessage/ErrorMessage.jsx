@@ -3,6 +3,11 @@ import { useDispatch } from 'react-redux';
 import styles from './ErrorMessage.module.css';
 import { clearErrorMessage } from '../../features/auth/userSlice';
 
+/**
+ * ErrorMessage component
+ *
+ * @param {string} message - error message
+ */
 function ErrorMessage({ message }) {
 	const dispatch = useDispatch();
 

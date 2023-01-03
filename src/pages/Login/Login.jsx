@@ -6,6 +6,9 @@ import { tabTitle } from '../../utils/helperFunctions';
 import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
+/**
+ * Signin page component
+ */
 function Signin() {
 	const dispatch = useDispatch();
 
