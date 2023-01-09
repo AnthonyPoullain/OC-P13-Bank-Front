@@ -40,9 +40,10 @@ function Profile() {
 
 	const handleUpdateProfile = (e) => {
 		e.preventDefault();
-		dispatch(updateUserProfile({ newFirstName, newLastName }))
-			.then(dispatch(fetchUserProfile()))
-			.then(handleToggleEditMode());
+		dispatch(updateUserProfile({ newFirstName, newLastName })).then(
+			dispatch(fetchUserProfile())
+		);
+		handleToggleEditMode();
 	};
 
 	return (
