@@ -6,8 +6,9 @@
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
 
-
-This repo contains the source code to run the **frontend** part of the **Argent Bank**'s app.
+This repo contains the source code to run the **frontend** part of the **Argent Bank**'s app,
+<br>
+from project **#13** of **OpenClassrooms' Javascript & React developer course**.
 <br>
 <br>
 A typescript version of the project can be found on the `ts` branch.
@@ -56,3 +57,7 @@ For the **frontend** to be able to access the data, the **backend** will first n
 1. Clone this repository
 2. The `npm install` command will allow you to install the dependencies
 3. The `npm run dev` command will allow you to run the React app
+
+## 📃 Acknowledgments
+
+- Thanks to [OpenClassrooms](https://openclassrooms.com/en/) for providing the course material and project specifications.
